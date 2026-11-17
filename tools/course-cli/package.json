@@ -1,0 +1,14 @@
+{
+  "name": "@obuchalka/course-cli",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p .",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@obuchalka/course-schema": "workspace:*",
+    "yaml": "^2.9.1"
+  }
+}

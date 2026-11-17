@@ -1,0 +1,16 @@
+node_modules/
+dist/
+web-build/
+coverage/
+.expo/
+*.tsbuildinfo
+.DS_Store
+
+# Секреты: только .env.example в репозитории
+.env
+.env.*
+!.env.example
+
+# Supabase локально
+supabase/.branches/
+supabase/.temp/

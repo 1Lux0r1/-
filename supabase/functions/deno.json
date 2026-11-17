@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "zod": "npm:zod@^4.6.7",
+    "@obuchalka/core": "./_shared/vendor/core/index.ts",
+    "@obuchalka/course-schema": "./_shared/vendor/course-schema/index.ts",
+    "@obuchalka/api-contract": "./_shared/vendor/api-contract/index.ts"
+  }
+}
