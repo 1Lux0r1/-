@@ -1,0 +1,59 @@
+format_version: 1
+slug: pm-senior
+version: 0.1.0
+title: "Путь к Senior PM"
+description: "Школа управления IT-проектами: от стажёра до Senior PM. 13 модулей, 81 подмодуль, теория плюс практика на кейсах с противоречиями и пробелами."
+language: ru
+estimated_hours: [350, 450]
+disclaimer: >
+  Школа не образовательная организация и документов не выдаёт. Грейды действуют только внутри программы
+  и отражают глубину решения кейсов, а не реальный опыт и ответственность за деньги и людей.
+
+rules:
+  pass_score: 70
+  module_gate: all_assignments_passed
+  fail_streak:
+    below: 50
+    count: 3
+    action: return_to_theory
+  reference_after_pass: true
+  clarifying_questions_default: 10
+  hint_ladder:
+    enabled: true
+    min_attempt_chars: 300
+    steps:
+      - { key: nudge,     title: "Вопрос-наводка" }
+      - { key: direction, title: "Направление" }
+      - { key: logic_gap, title: "Разбор логики" }
+      - { key: analogy,   title: "Пример на похожей задаче" }
+  self_check_per_lesson: 3
+  exam_mode_allowed: true
+  application_report: required
+  theory_questions_unlimited: true
+
+grades:
+  - key: G0
+    title: "Стажёр"
+    conditions: []
+  - key: G1
+    title: "Junior PM"
+    conditions:
+      - { type: modules_passed, modules: [m01, m02, m03] }
+  - key: G2
+    title: "Middle PM"
+    conditions:
+      - { type: modules_passed, modules: [m04, m05, m06] }
+      - { type: assignment_min_score, assignment: project.s1, min: 75 }
+  - key: G3
+    title: "Lead PM"
+    conditions:
+      - { type: modules_passed, modules: [m07, m08, m09, m10] }
+      - { type: average_score_min, modules: [m07, m08, m09, m10], min: 78 }
+  - key: G4
+    title: "Senior PM"
+    conditions:
+      - { type: modules_passed, modules: [m11, m12, m13] }
+      - { type: assignment_min_score, assignment: final, min: 85 }
+
+grade_loss:
+  - { type: project_stage_below, min: 60, effect: drop_one_level }
