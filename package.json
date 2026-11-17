@@ -1,0 +1,34 @@
+{
+  "name": "obuchalka",
+  "private": true,
+  "type": "module",
+  "description": "Обучалка: платформа загружаемых курсов с ИИ-наставником (телефон и веб)",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=22.18 <23"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @obuchalka/app start",
+    "web": "pnpm --filter @obuchalka/app web",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm -r --parallel typecheck && tsc --noEmit -p tools/scripts",
+    "test": "pnpm -r test",
+    "sync:shared": "node tools/scripts/sync-shared.ts",
+    "sync:shared:check": "node tools/scripts/sync-shared.ts --check",
+    "course:validate": "node tools/course-cli/src/main.ts validate",
+    "course:import": "node tools/course-cli/src/main.ts import"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.19.0",
+    "eslint": "^10.15.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.0.0",
+    "prettier": "^3.10.1",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.73.0",
+    "vitest": "^5.1.0"
+  }
+}

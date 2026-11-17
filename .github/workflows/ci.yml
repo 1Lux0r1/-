@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Проверки (lint, типы, тесты, курсы)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Линт
+        run: pnpm lint
+
+      - name: Форматирование
+        run: pnpm format:check
+
+      - name: Типы
+        run: pnpm typecheck
+
+      - name: Тесты
+        run: pnpm test
+
+      - name: Копия пакетов для Edge Functions актуальна
+        run: pnpm sync:shared:check
+
+      - name: Валидация курсов
+        run: pnpm course:validate
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Общие пакеты работают в Deno
+        run: deno test --config supabase/functions/deno.json tools/scripts/deno-smoke.test.ts
+
+      - name: Веб-сборка приложения
+        run: pnpm --filter @obuchalka/app export:web
+        env:
+          CI: '1'

@@ -1,0 +1,10 @@
+pnpm-lock.yaml
+node_modules
+dist
+.expo
+coverage
+# Документация и контент пишутся людьми и агентами вручную, автоформат их не трогает
+*.md
+courses/
+# Сгенерированная копия пакетов
+supabase/functions/_shared/vendor/
